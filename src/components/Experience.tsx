@@ -10,20 +10,20 @@ import {
 	OrbitControls,
 	PerspectiveCamera,
 	RandomizedLight,
-	Sphere,
 } from "@react-three/drei";
 import { Model as Aurelius } from "@/components/Aurelius";
-import { useControls } from "leva";
+import { Leva, useControls } from "leva";
 import { Group } from "three";
 
 export default function Experience() {
 	return (
-		<Canvas shadows dpr={1.5}>
+		<Canvas id="experience" shadows dpr={1.5}>
 			<Scene />
-			<Float floatingRange={[-0.05, 0.05]}>
+			<Float floatingRange={[0.15, 0.2]}>
 				<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
 			</Float>
 			<OrbitControls />
+			<Leva hidden />
 		</Canvas>
 	);
 }
@@ -51,13 +51,13 @@ const Scene = () => {
 		<>
 			<group position={[0, -0.375, 0]}>
 				<Aurelius castShadow />
-				<AccumulativeShadows frames={100} {...shadowProps}>
+				<AccumulativeShadows frames={40} {...shadowProps}>
 					<RandomizedLight {...randomizedLightProps} />
 				</AccumulativeShadows>
 			</group>
-			<Environment frames={Infinity} resolution={128} blur={1}>
+			{/* <Environment frames={Infinity} resolution={128} blur={1}>
 				<Lightformers />
-			</Environment>
+			</Environment> */}
 			<ambientLight intensity={2.5} />
 		</>
 	);

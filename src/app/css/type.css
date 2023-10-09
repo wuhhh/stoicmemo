@@ -1,0 +1,11 @@
+.quote {
+	@apply font-bold font-sans text-[3.125rem] leading-[1.05];
+}
+
+.author {
+	@apply font-bold font-sans text-[1.5625rem] leading-[1.05];
+}
+
+.label {
+	@apply font-mono uppercase text-[.875rem] leading-[.975];
+}

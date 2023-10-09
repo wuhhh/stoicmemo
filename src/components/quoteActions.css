@@ -1,0 +1,15 @@
+.quoteActions {
+	@apply flex items-center;
+}
+
+.quoteActions__button {
+	@apply flex items-center;
+}
+
+.quoteActions__button span {
+	@apply ml-[9px];
+}
+
+.quoteActions__divide {
+	@apply w-px h-[38px] mx-[15px] bg-almost-white;
+}
