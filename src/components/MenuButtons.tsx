@@ -6,9 +6,20 @@ import HeartIcon from "./icons/HeartIcon";
 import SunIcon from "./icons/SunIcon";
 import MoonIcon from "./icons/MoonIcon";
 
+// import persistentStore from "../stores/persistentStore";
+import transientStore from "../stores/transient";
+
 export default function MenuButtons(props: { className?: string }) {
 	const handleInfoClick = () => {
-		console.log("info");
+		transientStore.getState().showInfoToggle();
+	};
+
+	const handleFavouritesClick = () => {
+		console.log("favourites");
+	};
+
+	const handleDarkModeClick = () => {
+		console.log("dark mode");
 	};
 
 	return (
@@ -16,10 +27,10 @@ export default function MenuButtons(props: { className?: string }) {
 			<MenuButton onClick={handleInfoClick} ariaLabel="Show Info">
 				<InfoIcon className="w-[4px]" />
 			</MenuButton>
-			<MenuButton onClick={handleInfoClick} ariaLabel="Show Favourites">
+			<MenuButton onClick={handleFavouritesClick} ariaLabel="Show Favourites">
 				<HeartIcon className="w-[18px] translate-y-px" />
 			</MenuButton>
-			<MenuButton onClick={handleInfoClick} ariaLabel="Enable Dark Mode">
+			<MenuButton onClick={handleDarkModeClick} ariaLabel="Enable Dark Mode">
 				<SunIcon className="w-[22px]" />
 			</MenuButton>
 		</div>
