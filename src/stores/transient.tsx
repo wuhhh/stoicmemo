@@ -1,13 +1,17 @@
 import { create } from "zustand";
 
 interface TransientState {
-	showInfo: boolean;
-	showInfoToggle: () => void;
+	quote: number | null;
+	setQuote: (id: number) => void;
 	showFavourites: boolean;
 	showFavouritesToggle: () => void;
+	showInfo: boolean;
+	showInfoToggle: () => void;
 }
 
 export default create<TransientState>()((set) => ({
+	quote: null,
+	setQuote: (id: number) => set(() => ({ quote: id })),
 	showInfo: false,
 	showInfoToggle: () => set((state) => ({ showInfo: !state.showInfo })),
 	showFavourites: false,

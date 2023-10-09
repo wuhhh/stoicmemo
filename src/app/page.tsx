@@ -1,4 +1,3 @@
-// import page css
 import "@/app/page.css";
 import Image from "next/image";
 
@@ -7,8 +6,26 @@ import QuoteActions from "@/components/QuoteActions";
 import MenuButtons from "@/components/MenuButtons";
 import Info from "@/components/Info";
 
-export default function Home() {
-	const today = new Date().toLocaleDateString(undefined, {
+import transientStore from "@/stores/transient";
+import { useEffect } from "react";
+
+interface Quote {
+	id: number;
+	date: string;
+	quote: string;
+	author: string;
+}
+
+interface Quotes {
+	quotes: Quote[];
+}
+
+export default async function Home() {
+	const { props } = await getQuote();
+	const quote = props.quote;
+
+	const currentDate = new Date();
+	const todayPretty = currentDate.toLocaleDateString(undefined, {
 		year: "numeric",
 		month: "long",
 		day: "2-digit",
@@ -27,16 +44,13 @@ export default function Home() {
 									height={90}
 									alt="Stoic Memo Logo"
 								/>
-								<div className="label">{today}</div>
+								<div className="label">{todayPretty}</div>
 							</div>
 							<div className="flex-grow flex flex-col justify-center -mt-[90px]">
-								<h1 className="quote my-4">
-									You have power over your mind, not outside events. Realise
-									this and you will find strength.
-								</h1>
-								<div className="author my-4">Marcus Aurelius</div>
+								<h1 className="quote my-4">{quote.quote}</h1>
+								<div className="author my-4">{quote.author}</div>
 							</div>
-							<QuoteActions className="translate-y-[9px]" />
+							<QuoteActions className="translate-y-[9px]" quoteId={quote.id} />
 						</div>
 					</div>
 				</main>
@@ -48,4 +62,25 @@ export default function Home() {
 			<Info />
 		</>
 	);
+}
+
+async function getQuote() {
+	const currentDate = new Date();
+	const year = currentDate.getFullYear();
+	const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Zero-padding month
+	const day = String(currentDate.getDate()).padStart(2, "0"); // Zero-padding day
+	const data: Quotes = require(`../data/quotes.json`);
+	const quote = await data.quotes.find(
+		(data) => data.date === `${year}${month}${day}`
+	);
+
+	if (quote === undefined) {
+		throw new Error("Quote not found");
+	}
+
+	return {
+		props: {
+			quote,
+		},
+	};
 }
