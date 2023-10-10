@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
 	AccumulativeShadows,
-	accumulativeContext as AccumulativeContext,
 	Environment,
 	Float,
 	Lightformer,
