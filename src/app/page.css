@@ -1,1 +1,35 @@
+.page {
+	@apply bg-warm-grey flex h-full transition-colors duration-1000;
+}
 
+.page__copy {
+	@apply w-1/2 bg-smoke transition-colors duration-1000;
+}
+
+.page__experience {
+	@apply relative w-1/2;
+}
+
+.page__menuButtons {
+	@apply absolute top-16 right-16 text-hot-pink;
+}
+
+.quote,
+.author,
+.todayPretty {
+	@apply transition-colors duration-1000;
+}
+
+.-dark .page {
+	@apply bg-deep-charcoal;
+}
+
+.-dark .page__copy {
+	@apply bg-slate-night;
+}
+
+.-dark .quote,
+.-dark .author,
+.-dark .todayPretty {
+	@apply text-pearl;
+}

@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
 	AccumulativeShadows,
+	accumulativeContext as AccumulativeContext,
 	Environment,
 	Float,
 	Lightformer,
@@ -14,6 +15,8 @@ import {
 import { Model as Aurelius } from "@/components/Aurelius";
 import { Leva, useControls } from "leva";
 import { Group } from "three";
+
+import persistentStore from "@/stores/persistent";
 
 export default function Experience() {
 	return (
@@ -29,13 +32,40 @@ export default function Experience() {
 }
 
 const Scene = () => {
+	const ambientLight = useRef<THREE.AmbientLight>(null);
+	const darkMode = useRef(persistentStore.getState().darkMode);
+
+	useEffect(
+		() =>
+			persistentStore.subscribe((state) => (darkMode.current = state.darkMode)),
+		[]
+	);
+
+	useFrame((_, delta) => {
+		if (
+			darkMode.current &&
+			ambientLight.current &&
+			ambientLight.current.intensity > 0.0
+		) {
+			ambientLight.current.intensity -= delta * 2.0;
+		} else if (
+			!darkMode.current &&
+			ambientLight.current &&
+			ambientLight.current.intensity < 1.5
+		) {
+			ambientLight.current.intensity += delta * 2.0;
+		}
+	});
+
+	// const shadows = useRef<React.ComponentRef<typeof AccumulativeShadows>>(null);
+
 	const shadowProps = useControls("shadows", {
-		color: "#a39991",
+		color: "#726c66",
 		colorBlend: 4,
 		toneMapped: true,
 		alphaTest: 0.7,
-		opacity: 10,
 		scale: 4,
+		opacity: 1,
 	});
 
 	const randomizedLightProps = useControls("randomizedLight", {
@@ -52,13 +82,13 @@ const Scene = () => {
 			<group position={[0, -0.375, 0]}>
 				<Aurelius castShadow />
 				<AccumulativeShadows frames={40} {...shadowProps}>
-					<RandomizedLight {...randomizedLightProps} />
+					<RandomizedLight {...randomizedLightProps} mapSize={256} />
 				</AccumulativeShadows>
 			</group>
 			{/* <Environment frames={Infinity} resolution={128} blur={1}>
 				<Lightformers />
 			</Environment> */}
-			<ambientLight intensity={2.5} />
+			<ambientLight ref={ambientLight} intensity={0.0} />
 		</>
 	);
 };

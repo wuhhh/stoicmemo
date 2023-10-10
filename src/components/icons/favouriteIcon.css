@@ -1,0 +1,32 @@
+.favouriteIcon {
+	@apply text-almost-black w-4;
+}
+
+.favouriteIcon__pennant,
+.favouriteIcon__star {
+	@apply transition-colors duration-1000;
+}
+
+.favouriteIcon__pennant {
+	@apply fill-almost-black;
+}
+
+.favouriteIcon__star {
+	@apply fill-none;
+}
+
+.favouriteIcon.-favourite .favouriteIcon__pennant {
+	@apply fill-hot-pink;
+}
+
+.favouriteIcon.-favourite .favouriteIcon__star {
+	@apply fill-almost-black;
+}
+
+.-dark .favouriteIcon__pennant {
+	@apply fill-pearl;
+}
+
+.-dark .favouriteIcon__star {
+	@apply fill-slate-night;
+}

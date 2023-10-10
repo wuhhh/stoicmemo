@@ -10,6 +10,22 @@
 	@apply ml-[9px];
 }
 
+.quoteActions .label {
+	@apply transition-colors duration-1000;
+}
+
+.quoteActions button svg {
+	@apply transition-colors duration-1000;
+}
+
 .quoteActions__divide {
 	@apply w-px h-[38px] mx-[15px] bg-almost-white;
+}
+
+.-dark .quoteActions .label {
+	@apply text-pearl;
+}
+
+.-dark .quoteActions button svg {
+	@apply text-pearl;
 }

@@ -6,7 +6,7 @@ import HeartIcon from "./icons/HeartIcon";
 import SunIcon from "./icons/SunIcon";
 import MoonIcon from "./icons/MoonIcon";
 
-// import persistentStore from "../stores/persistentStore";
+import persistentStore from "../stores/persistent";
 import transientStore from "../stores/transient";
 
 export default function MenuButtons(props: { className?: string }) {
@@ -19,7 +19,7 @@ export default function MenuButtons(props: { className?: string }) {
 	};
 
 	const handleDarkModeClick = () => {
-		console.log("dark mode");
+		persistentStore.getState().toggleDarkMode();
 	};
 
 	return (

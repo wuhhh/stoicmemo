@@ -22,9 +22,9 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
 		"/gsxnet-aurelius-transformed.glb"
 	) as GLTFResult;
 	const aureliusMat = materials["Scene_-_Root"];
-	aureliusMat.metalness = 0.2;
-	aureliusMat.roughness = 0.4;
-	aureliusMat.envMapIntensity = 2.0;
+	// aureliusMat.metalness = 0.1;
+	// aureliusMat.roughness = 0.6;
+	// aureliusMat.envMapIntensity = 2.0;
 
 	return (
 		<group {...props} dispose={null}>

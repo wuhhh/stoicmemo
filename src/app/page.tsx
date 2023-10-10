@@ -5,9 +5,7 @@ import Experience from "@/components/Experience";
 import QuoteActions from "@/components/QuoteActions";
 import MenuButtons from "@/components/MenuButtons";
 import Info from "@/components/Info";
-
-import transientStore from "@/stores/transient";
-import { useEffect } from "react";
+import LocalFu from "@/components/LocalFu";
 
 interface Quote {
 	id: number;
@@ -21,8 +19,7 @@ interface Quotes {
 }
 
 export default async function Home() {
-	const { props } = await getQuote();
-	const quote = props.quote;
+	const { quote } = await getQuote();
 
 	const currentDate = new Date();
 	const todayPretty = currentDate.toLocaleDateString(undefined, {
@@ -33,8 +30,9 @@ export default async function Home() {
 
 	return (
 		<>
-			<div className="bg-warm-grey flex h-full">
-				<main className="w-1/2 bg-smoke">
+			<div className="page">
+				<LocalFu />
+				<main className="page__copy">
 					<div className="p-16 h-full">
 						<div className="flex flex-col h-full">
 							<div className="flex justify-between">
@@ -44,7 +42,7 @@ export default async function Home() {
 									height={90}
 									alt="Stoic Memo Logo"
 								/>
-								<div className="label">{todayPretty}</div>
+								<div className="label todayPretty">{todayPretty}</div>
 							</div>
 							<div className="flex-grow flex flex-col justify-center -mt-[90px]">
 								<h1 className="quote my-4">{quote.quote}</h1>
@@ -54,9 +52,9 @@ export default async function Home() {
 						</div>
 					</div>
 				</main>
-				<aside className="relative w-1/2">
+				<aside className="page__experience">
 					<Experience />
-					<MenuButtons className="absolute top-16 right-16 text-hot-pink" />
+					<MenuButtons className="page__menuButtons" />
 				</aside>
 			</div>
 			<Info />
@@ -79,8 +77,6 @@ async function getQuote() {
 	}
 
 	return {
-		props: {
-			quote,
-		},
+		quote,
 	};
 }
