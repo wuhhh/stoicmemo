@@ -10,3 +10,7 @@
 .label {
 	@apply font-mono uppercase text-[.875rem] leading-[.975];
 }
+
+.body {
+	@apply text-lg leading-[1.44];
+}

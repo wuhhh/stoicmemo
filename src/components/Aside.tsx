@@ -32,6 +32,13 @@ const Info = (props: { className?: string; active: boolean }) => {
 	return (
 		<div ref={ref} className="aside__page">
 			<h1 className="quote text-2xl text-almost-white mb-12">Information</h1>
+			<p className="body">
+				Stoic Memo offers a unique quote from Stoic philosophy each day. Many of
+				these quotes are derived from two primary texts - Seneca's 'Letters from
+				a Stoic' and Marcus Aurelius's 'Meditations'. Perhaps, like me, you're
+				someone who appreciates a daily, succinct reminder to remain grounded
+				and present.
+			</p>
 		</div>
 	);
 };

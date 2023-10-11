@@ -5,3 +5,7 @@
 .aside__page.-in {
 	@apply opacity-100;
 }
+
+.aside__page .body {
+	@apply text-pearl;
+}
