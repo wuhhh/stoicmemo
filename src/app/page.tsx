@@ -1,12 +1,12 @@
 import "@/app/page.css";
 import Image from "next/image";
 
+import Aside from "@/components/Aside";
 import Experience from "@/components/Experience";
-import QuoteActions from "@/components/QuoteActions";
-import MenuButtons from "@/components/MenuButtons";
-import Info from "@/components/Info";
-import LocalFu from "@/components/LocalFu";
 import Loading from "@/components/Loading";
+import LocalFu from "@/components/LocalFu";
+import MenuButtons from "@/components/MenuButtons";
+import QuoteActions from "@/components/QuoteActions";
 
 interface Quote {
 	id: number;
@@ -55,10 +55,10 @@ export default async function Home() {
 				</main>
 				<aside className="page__experience">
 					<Experience />
+					<Aside />
 					<MenuButtons className="page__menuButtons" />
 				</aside>
 			</div>
-			<Info />
 			<Loading />
 		</>
 	);

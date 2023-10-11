@@ -1,0 +1,7 @@
+.aside__page {
+	@apply transition-opacity duration-1000 opacity-0 pt-16;
+}
+
+.aside__page.-in {
+	@apply opacity-100;
+}

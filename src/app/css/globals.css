@@ -13,3 +13,25 @@ body {
 body {
 	@apply font-sans text-almost-black;
 }
+
+.component-enter {
+	opacity: 0;
+	transform: scale(0.8);
+	transition: opacity 3000ms, transform 3000ms;
+}
+
+.component-enter-active {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.component-exit {
+	opacity: 1;
+	transform: scale(1);
+	transition: opacity 3000ms, transform 3000ms;
+}
+
+.component-exit-active {
+	opacity: 0;
+	transform: scale(0.8);
+}

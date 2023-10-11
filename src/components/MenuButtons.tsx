@@ -10,12 +10,22 @@ import persistentStore from "../stores/persistent";
 import transientStore from "../stores/transient";
 
 export default function MenuButtons(props: { className?: string }) {
+	const asideComponent = transientStore((state) => state.asideComponent);
+
 	const handleInfoClick = () => {
-		transientStore.getState().showInfoToggle();
+		if (asideComponent === "info") {
+			transientStore.getState().setAsideComponent(null);
+			return;
+		}
+		transientStore.getState().setAsideComponent("info");
 	};
 
 	const handleFavouritesClick = () => {
-		console.log("favourites");
+		if (asideComponent === "favourites") {
+			transientStore.getState().setAsideComponent(null);
+			return;
+		}
+		transientStore.getState().setAsideComponent("favourites");
 	};
 
 	const handleDarkModeClick = () => {

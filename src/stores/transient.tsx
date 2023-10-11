@@ -1,28 +1,28 @@
 import { create } from "zustand";
 
 interface TransientState {
+	asideComponent: string | null;
+	setAsideComponent: (component: string | null) => void;
 	experienceLoaded: boolean;
 	setExperienceLoaded: () => void;
 	quote: number | null;
 	setQuote: (id: number) => void;
-	showFavourites: boolean;
-	showFavouritesToggle: () => void;
-	showInfo: boolean;
-	showInfoToggle: () => void;
 }
 
 export default create<TransientState>()((set) => ({
+	// Aside component
+	asideComponent: null,
+	setAsideComponent: (component) => set(() => ({ asideComponent: component })),
+
+	// Experience
 	experienceLoaded: false,
 	setExperienceLoaded: () => {
 		setTimeout(() => {
 			set(() => ({ experienceLoaded: true }));
 		}, 1000);
 	},
+
+	// Quote
 	quote: null,
 	setQuote: (id: number) => set(() => ({ quote: id })),
-	showInfo: false,
-	showInfoToggle: () => set((state) => ({ showInfo: !state.showInfo })),
-	showFavourites: false,
-	showFavouritesToggle: () =>
-		set((state) => ({ showFavourites: !state.showFavourites })),
 }));
