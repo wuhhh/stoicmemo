@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
 	AccumulativeShadows,
@@ -16,17 +16,22 @@ import { Leva, useControls } from "leva";
 import { Group } from "three";
 
 import persistentStore from "@/stores/persistent";
+import transientStore from "@/stores/transient";
 
 export default function Experience() {
 	return (
-		<Canvas id="experience" shadows dpr={1.5}>
-			<Scene />
-			<Float floatingRange={[0.15, 0.2]}>
-				<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
-			</Float>
-			<OrbitControls />
-			<Leva hidden />
-		</Canvas>
+		<>
+			<Suspense fallback={null}>
+				<Canvas id="experience" shadows dpr={1.5}>
+					<Scene />
+					<Float floatingRange={[0.15, 0.2]}>
+						<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
+					</Float>
+					<OrbitControls />
+					<Leva hidden />
+				</Canvas>
+			</Suspense>
+		</>
 	);
 }
 
@@ -34,11 +39,11 @@ const Scene = () => {
 	const ambientLight = useRef<THREE.AmbientLight>(null);
 	const darkMode = useRef(persistentStore.getState().darkMode);
 
-	useEffect(
-		() =>
-			persistentStore.subscribe((state) => (darkMode.current = state.darkMode)),
-		[]
-	);
+	useEffect(() => {
+		persistentStore.subscribe((state) => (darkMode.current = state.darkMode));
+		const setExperienceLoaded = transientStore.getState().setExperienceLoaded;
+		setExperienceLoaded();
+	}, []);
 
 	useFrame((_, delta) => {
 		if (
@@ -46,13 +51,13 @@ const Scene = () => {
 			ambientLight.current &&
 			ambientLight.current.intensity > 0.0
 		) {
-			ambientLight.current.intensity -= delta * 2.0;
+			ambientLight.current.intensity -= delta;
 		} else if (
 			!darkMode.current &&
 			ambientLight.current &&
 			ambientLight.current.intensity < 1.5
 		) {
-			ambientLight.current.intensity += delta * 2.0;
+			ambientLight.current.intensity += delta;
 		}
 	});
 

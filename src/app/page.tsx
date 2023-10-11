@@ -6,6 +6,7 @@ import QuoteActions from "@/components/QuoteActions";
 import MenuButtons from "@/components/MenuButtons";
 import Info from "@/components/Info";
 import LocalFu from "@/components/LocalFu";
+import Loading from "@/components/Loading";
 
 interface Quote {
 	id: number;
@@ -58,6 +59,7 @@ export default async function Home() {
 				</aside>
 			</div>
 			<Info />
+			<Loading />
 		</>
 	);
 }

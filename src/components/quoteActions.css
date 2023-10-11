@@ -19,7 +19,7 @@
 }
 
 .quoteActions__divide {
-	@apply w-px h-[38px] mx-[15px] bg-almost-white;
+	@apply w-px h-[38px] mx-[15px] bg-almost-white transition-colors duration-1000;
 }
 
 .-dark .quoteActions .label {
@@ -28,4 +28,8 @@
 
 .-dark .quoteActions button svg {
 	@apply text-pearl;
+}
+
+.-dark .quoteActions__divide {
+	@apply bg-pearl/50;
 }

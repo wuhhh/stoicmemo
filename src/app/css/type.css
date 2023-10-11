@@ -1,5 +1,6 @@
 .quote {
-	@apply font-bold font-sans text-[3.125rem] leading-[1.05];
+	@apply font-bold font-sans leading-[1.05];
+	font-size: clamp(1.5625rem, 3.125rem, 4vw);
 }
 
 .author {

@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 interface TransientState {
+	experienceLoaded: boolean;
+	setExperienceLoaded: () => void;
 	quote: number | null;
 	setQuote: (id: number) => void;
 	showFavourites: boolean;
@@ -10,6 +12,12 @@ interface TransientState {
 }
 
 export default create<TransientState>()((set) => ({
+	experienceLoaded: false,
+	setExperienceLoaded: () => {
+		setTimeout(() => {
+			set(() => ({ experienceLoaded: true }));
+		}, 1000);
+	},
 	quote: null,
 	setQuote: (id: number) => set(() => ({ quote: id })),
 	showInfo: false,
