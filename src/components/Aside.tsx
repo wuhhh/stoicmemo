@@ -36,8 +36,8 @@ const Info = (props: { className?: string; active: boolean }) => {
 				Stoic Memo offers a unique quote from Stoic philosophy each day. Many of
 				these quotes are derived from two primary texts - Seneca's 'Letters from
 				a Stoic' and Marcus Aurelius's 'Meditations'. Perhaps, like me, you're
-				someone who appreciates a daily, succinct reminder to remain grounded
-				and present.
+				someone who appreciates a succinct daily reminder to remain grounded and
+				present.
 			</p>
 		</div>
 	);
