@@ -1,7 +1,7 @@
 import "@/app/page.css";
 import Image from "next/image";
 
-import Aside from "@/components/Aside";
+import Aside from "@/components/AsidePages";
 import Experience from "@/components/Experience";
 import Loading from "@/components/Loading";
 import LocalFu from "@/components/LocalFu";

@@ -1,22 +1,26 @@
 "use client";
 
-import "./aside.css";
+import "./asidePages.css";
 import transientStore from "../stores/transient";
 import persistentStore from "../stores/persistent";
 import React, { useState, useEffect, useRef } from "react";
 import CloseIcon from "./icons/CloseIcon";
 
-function useTransition(active: boolean, ref: React.RefObject<HTMLElement>) {
+function useTransition(
+	active: boolean,
+	ref: React.RefObject<HTMLElement>,
+	_class: string
+) {
 	useEffect(() => {
 		if (ref.current) {
 			if (active) {
 				setTimeout(() => {
 					if (ref.current) {
-						ref.current.classList.add("-in");
+						ref.current.classList.add(_class);
 					}
 				}, 50);
 			} else {
-				ref.current.classList.remove("-in");
+				ref.current.classList.remove(_class);
 			}
 		}
 	}, [active, ref]);
@@ -28,10 +32,10 @@ function useTransition(active: boolean, ref: React.RefObject<HTMLElement>) {
 const Info = (props: { className?: string; active: boolean }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
-	useTransition(props.active, ref);
+	useTransition(props.active, ref, "-in");
 
 	return (
-		<div ref={ref} className="aside__page">
+		<div ref={ref} className="asidePages__page">
 			<h1 className="quote text-2xl text-almost-white mb-12 pl-12 pr-16">
 				Information
 			</h1>
@@ -72,7 +76,7 @@ const Favourites = (props: { className?: string | null; active: boolean }) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const favourites = persistentStore((state) => state.favourites);
 
-	useTransition(props.active, ref);
+	useTransition(props.active, ref, "-in");
 
 	const toDate = (date: string) => {
 		const dateString: string = date.toString();
@@ -91,7 +95,7 @@ const Favourites = (props: { className?: string | null; active: boolean }) => {
 	};
 
 	return (
-		<div ref={ref} className="aside__page">
+		<div ref={ref} className="asidePages__page">
 			<h1 className="quote text-2xl text-almost-white mb-12 pl-12 pr-16">
 				Favourites
 			</h1>
@@ -125,6 +129,8 @@ const Favourites = (props: { className?: string | null; active: boolean }) => {
  * Aside
  */
 export default function AsideOverlay(props: { children?: any }) {
+	const ref = useRef<HTMLDivElement>(null);
+
 	const transitionDuration = 1000;
 	const asideComponent = transientStore((state) => state.asideComponent);
 	const setAsideComponent = transientStore((state) => state.setAsideComponent);
@@ -141,8 +147,13 @@ export default function AsideOverlay(props: { children?: any }) {
 		}
 	}, [asideComponent, activeComponent]);
 
+	useTransition(!!asideComponent, ref, "-active");
+
 	return (
-		<div className="absolute inset-y-0 right-0 w-1/2 overflow-hidden">
+		<div
+			ref={ref}
+			className="asidePages absolute inset-y-0 right-0 w-1/2 overflow-hidden"
+		>
 			<div
 				style={{
 					transition: `all ${transitionDuration}ms cubic-bezier(0.645, 0.045, 0.355, 1.000)`, // cubic
@@ -156,15 +167,13 @@ export default function AsideOverlay(props: { children?: any }) {
 			></div>
 			<div className="absolute inset-0">
 				<div className="pt-16 flex flex-col h-full">
-					{activeComponent && (
-						<button
-							onClick={() => setAsideComponent(null)}
-							className="relative flex-shrink-0 ml-12 w-[44px] h-[44px] rounded-full border border-hot-pink flex items-center justify-center"
-							aria-label={`Close ${activeComponent}`}
-						>
-							<CloseIcon className="w-[13px] text-hot-pink" />
-						</button>
-					)}
+					<button
+						onClick={() => setAsideComponent(null)}
+						className="asidePages__closePage"
+						aria-label={`Close ${activeComponent}`}
+					>
+						<CloseIcon className="w-[13px] text-hot-pink" />
+					</button>
 					{activeComponent === "info" && <Info active={!isTransitioning} />}
 					{activeComponent === "favourites" && (
 						<Favourites active={!isTransitioning} />

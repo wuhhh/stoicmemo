@@ -1,25 +1,33 @@
-.aside__page {
+.asidePages__page {
 	@apply relative flex flex-col flex-grow transition-opacity duration-1000 opacity-0 pt-16 before:block before:z-10 before:absolute before:bottom-0 before:inset-x-0 before:h-16 before:bg-gradient-to-t before:from-deep-charcoal;
 }
 
-.aside__page.-in {
+.asidePages__page.-in {
 	@apply opacity-100;
 }
 
-.aside__page .body {
+.asidePages__page .body {
 	@apply text-pearl;
 }
 
-.aside__page .credits {
+.asidePages__page .credits {
 	@apply mt-12;
 }
 
-.aside__page .credits p {
+.asidePages__page .credits p {
 	@apply text-sm text-warm-grey mb-6 pr-7 last:mb-0;
 }
 
-.aside__page .credits p a {
+.asidePages__page .credits p a {
 	@apply underline decoration-warm-grey hover:decoration-hot-pink hover:text-smoke;
+}
+
+.asidePages__closePage {
+	@apply relative flex-shrink-0 ml-12 w-[44px] h-[44px] rounded-full border border-hot-pink flex items-center justify-center -rotate-[10deg] duration-1000 opacity-0 pointer-events-none;
+}
+
+.asidePages.-active .asidePages__closePage {
+	@apply opacity-100 rotate-0 pointer-events-auto;
 }
 
 .scrollable {
