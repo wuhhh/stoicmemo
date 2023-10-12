@@ -9,3 +9,15 @@
 .aside__page .body {
 	@apply text-pearl;
 }
+
+.aside__page .credits {
+	@apply mt-12;
+}
+
+.aside__page .credits p {
+	@apply text-sm text-warm-grey mb-6 pr-7 last:mb-0;
+}
+
+.aside__page .credits p a {
+	@apply underline decoration-warm-grey hover:decoration-hot-pink hover:text-smoke;
+}

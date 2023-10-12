@@ -39,6 +39,21 @@ const Info = (props: { className?: string; active: boolean }) => {
 				someone who appreciates a succinct daily reminder to remain grounded and
 				present.
 			</p>
+			<div className="credits">
+				<p>
+					Website concept, design and development by{" "}
+					<a href="https://huwroberts.net">Huw Roberts.</a>
+				</p>
+				<p>Icons from Remix Icon, an open-source icon library.</p>
+				<p>
+					<a href="https://skfb.ly/6soGn">"Marcus Aurelius" 3D model</a> by
+					GSXNet is licensed under{" "}
+					<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+						CC Attribution-NonCommercial-ShareAlike
+					</a>
+					.
+				</p>
+			</div>
 		</div>
 	);
 };
