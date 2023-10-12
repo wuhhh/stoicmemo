@@ -1,6 +1,59 @@
 .quote {
 	@apply font-bold font-sans leading-[1.05];
-	font-size: clamp(1.5625rem, 3.125rem, 4vw);
+}
+
+.quote.quote--lt25 {
+	font-size: clamp(1.5625rem, 9rem, 6vw);
+
+	@apply leading-[.95];
+}
+
+.quote.quote--lt50 {
+	font-size: clamp(1.5625rem, 5.8rem, 4.3vw);
+}
+
+.quote.quote--lt75 {
+	font-size: clamp(1.5625rem, 4.8rem, 3.1vw);
+}
+
+.quote.quote--lt100 {
+	font-size: clamp(1.5625rem, 4.4rem, 2.76vw);
+}
+
+.quote.quote--lt125 {
+	font-size: clamp(1.5625rem, 3.5rem, 2.25vw);
+
+	@apply leading-[1.2];
+}
+
+.quote.quote--lt150 {
+	font-size: clamp(1.5625rem, 3.2rem, 2.2vw);
+
+	@apply leading-[1.2] 2xl:pr-16;
+}
+
+.quote.quote--lt175 {
+	font-size: clamp(1.5625rem, 3.2rem, 1.96vw);
+
+	@apply leading-[1.2] 2xl:pr-16;
+}
+
+.quote.quote--lt200 {
+	font-size: clamp(1.3rem, 2.55rem, 1.65vw);
+
+	@apply leading-[1.2] 2xl:pr-16;
+}
+
+.quote.quote--lt225 {
+	font-size: clamp(1.3rem, 2.55rem, 1.65vw);
+
+	@apply leading-[1.2] 2xl:pr-16;
+}
+
+.quote.quote--gte225 {
+	font-size: clamp(1.3rem, 2.25rem, 1.4vw);
+
+	@apply leading-[1.25] 2xl:pr-16;
 }
 
 .author {

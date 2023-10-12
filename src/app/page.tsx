@@ -29,6 +29,40 @@ export default async function Home() {
 		day: "2-digit",
 	});
 
+	const quoteLength = quote.quote.length;
+
+	const quoteLengthClass = () => {
+		if (quoteLength < 25) {
+			return "quote--lt25";
+		}
+		if (quoteLength < 50) {
+			return "quote--lt50";
+		}
+		if (quoteLength < 75) {
+			return "quote--lt75";
+		}
+		if (quoteLength < 100) {
+			return "quote--lt100";
+		}
+		if (quoteLength < 125) {
+			return "quote--lt125";
+		}
+		if (quoteLength < 150) {
+			return "quote--lt150";
+		}
+		if (quoteLength < 175) {
+			return "quote--lt175";
+		}
+		if (quoteLength < 200) {
+			return "quote--lt200";
+		}
+		if (quoteLength < 225) {
+			return "quote--lt225";
+		}
+
+		return "quote--gte225";
+	};
+
 	return (
 		<>
 			<div className="page">
@@ -46,7 +80,9 @@ export default async function Home() {
 								<div className="label todayPretty">{todayPretty}</div>
 							</div>
 							<div className="flex-grow flex flex-col justify-center -mt-[90px]">
-								<h1 className="quote my-4">{quote.quote}</h1>
+								<h1 className={`quote my-4 ${quoteLengthClass()}`}>
+									{quote.quote}
+								</h1>
 								<div className="author my-4">{quote.author}</div>
 							</div>
 							<QuoteActions className="translate-y-[9px]" quoteId={quote.id} />
