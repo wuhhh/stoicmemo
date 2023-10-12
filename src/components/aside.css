@@ -1,5 +1,5 @@
 .aside__page {
-	@apply transition-opacity duration-1000 opacity-0 pt-16;
+	@apply relative flex flex-col flex-grow transition-opacity duration-1000 opacity-0 pt-16 before:block before:z-10 before:absolute before:bottom-0 before:inset-x-0 before:h-16 before:bg-gradient-to-t before:from-deep-charcoal;
 }
 
 .aside__page.-in {
@@ -20,4 +20,12 @@
 
 .aside__page .credits p a {
 	@apply underline decoration-warm-grey hover:decoration-hot-pink hover:text-smoke;
+}
+
+.scrollable {
+	@apply relative flex-grow overflow-auto;
+}
+
+.scrollable__inner {
+	@apply absolute inset-0 pl-12 pr-16 after:block after:h-16;
 }

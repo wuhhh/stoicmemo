@@ -2,6 +2,7 @@
 
 import "./aside.css";
 import transientStore from "../stores/transient";
+import persistentStore from "../stores/persistent";
 import React, { useState, useEffect, useRef } from "react";
 import CloseIcon from "./icons/CloseIcon";
 
@@ -13,7 +14,7 @@ function useTransition(active: boolean, ref: React.RefObject<HTMLElement>) {
 					if (ref.current) {
 						ref.current.classList.add("-in");
 					}
-				}, 10);
+				}, 50);
 			} else {
 				ref.current.classList.remove("-in");
 			}
@@ -31,28 +32,34 @@ const Info = (props: { className?: string; active: boolean }) => {
 
 	return (
 		<div ref={ref} className="aside__page">
-			<h1 className="quote text-2xl text-almost-white mb-12">Information</h1>
-			<p className="body">
-				Stoic Memo offers a unique quote from Stoic philosophy each day. Many of
-				these quotes are derived from two primary texts - Seneca's 'Letters from
-				a Stoic' and Marcus Aurelius's 'Meditations'. Perhaps, like me, you're
-				someone who appreciates a succinct daily reminder to remain grounded and
-				present.
-			</p>
-			<div className="credits">
-				<p>
-					Website concept, design and development by{" "}
-					<a href="https://huwroberts.net">Huw Roberts.</a>
-				</p>
-				<p>Icons from Remix Icon, an open-source icon library.</p>
-				<p>
-					<a href="https://skfb.ly/6soGn">"Marcus Aurelius" 3D model</a> by
-					GSXNet is licensed under{" "}
-					<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
-						CC Attribution-NonCommercial-ShareAlike
-					</a>
-					.
-				</p>
+			<h1 className="quote text-2xl text-almost-white mb-12 pl-12 pr-16">
+				Information
+			</h1>
+			<div className="scrollable">
+				<div className="scrollable__inner">
+					<p className="body">
+						Stoic Memo offers a unique quote from Stoic philosophy each day.
+						Many of these quotes are derived from two primary texts - Seneca's
+						'Letters from a Stoic' and Marcus Aurelius's 'Meditations'. Perhaps,
+						like me, you're someone who appreciates a succinct daily reminder to
+						remain grounded and present.
+					</p>
+					<div className="credits">
+						<p>
+							Website concept, design and development by{" "}
+							<a href="https://huwroberts.net">Huw Roberts.</a>
+						</p>
+						<p>Icons from Remix Icon, an open-source icon library.</p>
+						<p>
+							<a href="https://skfb.ly/6soGn">"Marcus Aurelius" 3D model</a> by
+							GSXNet is licensed under{" "}
+							<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+								CC Attribution-NonCommercial-ShareAlike
+							</a>
+							.
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -63,12 +70,53 @@ const Info = (props: { className?: string; active: boolean }) => {
  */
 const Favourites = (props: { className?: string | null; active: boolean }) => {
 	const ref = useRef<HTMLDivElement>(null);
+	const favourites = persistentStore((state) => state.favourites);
 
 	useTransition(props.active, ref);
 
+	const toDate = (date: string) => {
+		const dateString: string = date.toString();
+		const year: number = parseInt(dateString.slice(0, 4));
+		const month: number = parseInt(dateString.slice(4, 6)) - 1;
+		const day: number = parseInt(dateString.slice(6, 8));
+		return new Date(year, month, day);
+	};
+
+	const prettyDate = (date: string) => {
+		return toDate(date).toLocaleDateString(undefined, {
+			year: "numeric",
+			month: "long",
+			day: "2-digit",
+		});
+	};
+
 	return (
 		<div ref={ref} className="aside__page">
-			<h1 className="quote text-2xl text-almost-white mb-12">Favourites</h1>
+			<h1 className="quote text-2xl text-almost-white mb-12 pl-12 pr-16">
+				Favourites
+			</h1>
+			{favourites.length === 0 && (
+				<p className="body pl-12 pr-16 text-warm-grey opacity-50">
+					You don't have any favourites yet.
+				</p>
+			)}
+			{favourites.length > 0 && (
+				<div className="favourites scrollable">
+					<div className="scrollable__inner">
+						{favourites.map((favourite) => (
+							<div key={favourite.id} className="favourite mb-10 last:mb-0">
+								<div className="label text-blush-petal mb-5">
+									{prettyDate(favourite.date)}
+								</div>
+								<div className="body text-warm-grey">{favourite.quote}</div>
+								<div className="font-bold text-sm text-hot-pink mt-2.5">
+									{favourite.author}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
@@ -107,11 +155,11 @@ export default function AsideOverlay(props: { children?: any }) {
 				className="h-screen bg-deep-charcoal origin-top-left"
 			></div>
 			<div className="absolute inset-0">
-				<div className="py-16 pl-12 pr-16">
+				<div className="pt-16 flex flex-col h-full">
 					{activeComponent && (
 						<button
 							onClick={() => setAsideComponent(null)}
-							className="relative w-[44px] h-[44px] rounded-full border border-hot-pink flex items-center justify-center"
+							className="relative flex-shrink-0 ml-12 w-[44px] h-[44px] rounded-full border border-hot-pink flex items-center justify-center"
 							aria-label={`Close ${activeComponent}`}
 						>
 							<CloseIcon className="w-[13px] text-hot-pink" />

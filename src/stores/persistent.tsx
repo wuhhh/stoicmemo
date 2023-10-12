@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { Quote } from "@/types/index";
 
 interface PersistentState {
 	darkMode: boolean;
 	toggleDarkMode: () => void;
-	favourites: number[];
-	addFavourite: (id: number) => void;
-	removeFavourite: (id: number) => void;
+	favourites: Quote[];
+	addFavourite: (favourite: Quote) => void;
+	removeFavourite: (favourite: Quote) => void;
 }
 
 export default create<PersistentState>()(
@@ -24,17 +25,21 @@ export default create<PersistentState>()(
 					return { darkMode: !state.darkMode };
 				}),
 			favourites: [],
-			addFavourite: (id) =>
-				set((state) => ({
-					favourites: [...state.favourites, id],
-				})),
-			removeFavourite: (id) =>
-				set((state) => ({
-					favourites: state.favourites.filter((x) => x !== id),
-				})),
+			addFavourite: (favourite: Quote) =>
+				set((state) => {
+					const favourites = [...state.favourites, favourite];
+					return { favourites };
+				}),
+			removeFavourite: (favourite: Quote) =>
+				set((state) => {
+					const favourites = state.favourites.filter(
+						(fav) => fav.id !== favourite.id
+					);
+					return { favourites };
+				}),
 		}),
 		{
-			name: "favourites-storage",
+			name: "stoicmemo-storage",
 		}
 	)
 );

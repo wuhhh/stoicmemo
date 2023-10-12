@@ -7,17 +7,7 @@ import Loading from "@/components/Loading";
 import LocalFu from "@/components/LocalFu";
 import MenuButtons from "@/components/MenuButtons";
 import QuoteActions from "@/components/QuoteActions";
-
-interface Quote {
-	id: number;
-	date: string;
-	quote: string;
-	author: string;
-}
-
-interface Quotes {
-	quotes: Quote[];
-}
+import { Quotes } from "@/types/index";
 
 export default async function Home() {
 	const { quote } = await getQuote();
@@ -85,7 +75,7 @@ export default async function Home() {
 								</h1>
 								<div className="author my-4">{quote.author}</div>
 							</div>
-							<QuoteActions className="translate-y-[9px]" quoteId={quote.id} />
+							<QuoteActions className="translate-y-[9px]" quote={quote} />
 						</div>
 					</div>
 				</main>

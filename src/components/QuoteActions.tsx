@@ -5,18 +5,19 @@ import FavouriteIcon from "./icons/FavouriteIcon";
 import XIcon from "./icons/XIcon";
 import FacebookIcon from "./icons/FacebookIcon";
 import persistentStore from "../stores/persistent";
+import { Quote } from "@/types/index";
 
 export default function QuoteActions(props: {
 	className?: string;
-	quoteId: number;
+	quote: Quote;
 }) {
 	const favourites = persistentStore((state) => state.favourites);
+	const favouritesIds = favourites.map((fav) => fav.id);
 	const handleFavouriteClick = () => {
-		if (favourites.includes(props.quoteId)) {
-			persistentStore.getState().removeFavourite(props.quoteId);
-		} else {
-			persistentStore.getState().addFavourite(props.quoteId);
+		if (favouritesIds.includes(props.quote.id)) {
+			return persistentStore.getState().removeFavourite(props.quote);
 		}
+		persistentStore.getState().addFavourite(props.quote);
 	};
 
 	return (
@@ -28,7 +29,7 @@ export default function QuoteActions(props: {
 			>
 				<FavouriteIcon
 					className="w-[16px]"
-					isFavourite={favourites.includes(props.quoteId)}
+					isFavourite={favouritesIds.includes(props.quote.id)}
 				/>
 				<span className="label">Favourite</span>
 			</button>
