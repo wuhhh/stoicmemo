@@ -5,31 +5,61 @@
 .quote.quote--lt25 {
 	font-size: clamp(1.5625rem, 9rem, 6vw);
 
-	@apply leading-[.95];
+	@apply leading-[.95] 2xl:-translate-x-[10px];
+}
+
+.quote.quote--lt25 + .author {
+	@apply 2xl:-translate-x-[4px];
 }
 
 .quote.quote--lt50 {
-	font-size: clamp(1.5625rem, 5.8rem, 4.3vw);
+	font-size: clamp(1.5625rem, 5.45rem, 3.7vw);
+
+	@apply 2xl:-translate-x-[8px];
+}
+
+.quote.quote--lt50 + .author {
+	@apply 2xl:-translate-x-[4px];
 }
 
 .quote.quote--lt75 {
 	font-size: clamp(1.5625rem, 4.8rem, 3.1vw);
+
+	@apply 2xl:-translate-x-[5px];
+}
+
+.quote.quote--lt75 + .author {
+	@apply 2xl:-translate-x-[3px];
 }
 
 .quote.quote--lt100 {
 	font-size: clamp(1.5625rem, 4.4rem, 2.76vw);
+
+	@apply 2xl:-translate-x-[3px];
+}
+
+.quote.quote--lt100 + .author {
+	@apply 2xl:-translate-x-[2px];
 }
 
 .quote.quote--lt125 {
 	font-size: clamp(1.5625rem, 3.5rem, 2.25vw);
 
-	@apply leading-[1.2];
+	@apply leading-[1.2] 2xl:pr-16 2xl:-translate-x-[2px];
+}
+
+.quote.quote--lt125 + .author {
+	@apply 2xl:-translate-x-px;
 }
 
 .quote.quote--lt150 {
 	font-size: clamp(1.5625rem, 3.2rem, 2.2vw);
 
-	@apply leading-[1.2] 2xl:pr-16;
+	@apply leading-[1.2] 2xl:pr-16 2xl:-translate-x-[2px];
+}
+
+.quote.quote--lt150 + .author {
+	@apply 2xl:-translate-x-px;
 }
 
 .quote.quote--lt175 {
