@@ -24,7 +24,7 @@ function useTransition(
 				ref.current.classList.remove(_class);
 			}
 		}
-	}, [active, ref]);
+	}, [_class, active, ref]);
 }
 
 /**
