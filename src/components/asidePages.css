@@ -15,11 +15,11 @@
 }
 
 .asidePages__page .credits p {
-	@apply text-sm text-warm-grey mb-6 pr-7 last:mb-0;
+	@apply text-sm text-warm-grey-dark mb-6 pr-7 last:mb-0;
 }
 
 .asidePages__page .credits p a {
-	@apply underline decoration-warm-grey hover:decoration-hot-pink hover:text-smoke;
+	@apply underline decoration-warm-grey-dark hover:decoration-hot-pink hover:text-smoke transition;
 }
 
 .asidePages__closePage {

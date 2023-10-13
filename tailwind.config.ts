@@ -11,6 +11,7 @@ const config: Config = {
 			'almost-black': '#261313',
 			'hot-pink': '#FF7676',
 			'warm-grey': '#ACA39C',
+			'warm-grey-dark': '#7C7269',
 			'smoke': '#C8BFBB',
 			'almost-white': '#F1F1F1',
 			'nebula-indigo': '#422AA1',
