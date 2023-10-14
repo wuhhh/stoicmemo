@@ -7,10 +7,10 @@ import Loading from "@/components/Loading";
 import LocalFu from "@/components/LocalFu";
 import MenuButtons from "@/components/MenuButtons";
 import QuoteActions from "@/components/QuoteActions";
-import { Quotes } from "@/types/index";
+import { Quote } from "@/types/index";
 
 export default async function Home() {
-	const { quote } = await fetchRandomQuote();
+	const { quote } = await fetchTodaysQuote();
 
 	const currentDate = new Date();
 	const todayPretty = currentDate.toLocaleDateString(undefined, {
@@ -90,10 +90,16 @@ export default async function Home() {
 	);
 }
 
+/**
+ * Fetches a random quote from the quotes.json file
+ */
 async function fetchRandomQuote() {
-	const res = await fetch(`https://stoic-memo.vercel.app/data/quotes.json`, {
-		cache: "no-store",
-	});
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_HOSTNAME}/data/quotes.json`,
+		{
+			cache: "no-store",
+		}
+	);
 
 	const { quotes } = await res.json();
 
@@ -102,38 +108,30 @@ async function fetchRandomQuote() {
 	return { quote: quote };
 }
 
-async function getRandomQuote() {
-	"use server";
+/**
+ * Fetches today's quote from the quotes.json file
+ */
+async function fetchTodaysQuote() {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_HOSTNAME}/data/quotes.json`,
+		{
+			cache: "no-store",
+		}
+	);
 
-	const data: Quotes = require(`../data/quotes.json`);
-	const quote = await data.quotes[
-		Math.floor(Math.random() * data.quotes.length)
-	];
-
-	if (quote === undefined) {
-		throw new Error("Quote not found");
-	}
-
-	return {
-		quote,
-	};
-}
-
-async function getTodaysQuote() {
-	"use server";
+	const { quotes } = await res.json();
 
 	const currentDate = new Date();
 	const year = currentDate.getFullYear();
 	const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Zero-padding month
 	const day = String(currentDate.getDate()).padStart(2, "0"); // Zero-padding day
 
-	const data: Quotes = require(`../data/quotes.json`);
-	const quote = await data.quotes.find(
-		(data) => data.date === `${year}${month}${day}`
+	const quote = quotes.find(
+		(quote: Quote) => quote.date === `${year}${month}${day}`
 	);
 
 	if (quote === undefined) {
-		throw new Error("Quote not found");
+		fetchRandomQuote();
 	}
 
 	return {
