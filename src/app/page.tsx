@@ -10,7 +10,7 @@ import QuoteActions from "@/components/QuoteActions";
 import { Quotes } from "@/types/index";
 
 export default async function Home() {
-	const { quote } = await getRandomQuote();
+	const { quote } = await fetchRandomQuote();
 
 	const currentDate = new Date();
 	const todayPretty = currentDate.toLocaleDateString(undefined, {
@@ -90,6 +90,18 @@ export default async function Home() {
 	);
 }
 
+async function fetchRandomQuote() {
+	const res = await fetch(`https://stoic-memo.vercel.app/data/quotes.json`, {
+		cache: "no-store",
+	});
+
+	const { quotes } = await res.json();
+
+	const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+	return { quote: quote };
+}
+
 async function getRandomQuote() {
 	"use server";
 
@@ -114,6 +126,7 @@ async function getTodaysQuote() {
 	const year = currentDate.getFullYear();
 	const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Zero-padding month
 	const day = String(currentDate.getDate()).padStart(2, "0"); // Zero-padding day
+
 	const data: Quotes = require(`../data/quotes.json`);
 	const quote = await data.quotes.find(
 		(data) => data.date === `${year}${month}${day}`
