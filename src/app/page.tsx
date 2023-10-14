@@ -10,7 +10,7 @@ import QuoteActions from "@/components/QuoteActions";
 import { Quotes } from "@/types/index";
 
 export default async function Home() {
-	const { quote } = await getQuote();
+	const { quote } = await getRandomQuote();
 
 	const currentDate = new Date();
 	const todayPretty = currentDate.toLocaleDateString(undefined, {
@@ -90,7 +90,26 @@ export default async function Home() {
 	);
 }
 
-async function getQuote() {
+async function getRandomQuote() {
+	"use server";
+
+	const data: Quotes = require(`../data/quotes.json`);
+	const quote = await data.quotes[
+		Math.floor(Math.random() * data.quotes.length)
+	];
+
+	if (quote === undefined) {
+		throw new Error("Quote not found");
+	}
+
+	return {
+		quote,
+	};
+}
+
+async function getTodaysQuote() {
+	"use server";
+
 	const currentDate = new Date();
 	const year = currentDate.getFullYear();
 	const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Zero-padding month

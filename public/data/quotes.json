@@ -1,0 +1,70 @@
+{
+	"quotes": [
+		{
+			"id": 1,
+			"date": "20231009",
+			"quote": "You have power over your mind, not outside events. Realise this and you will find strength.",
+			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 2,
+			"date": "20231010",
+			"quote": "Difficulties strengthen the mind, as labour does the body.",
+			"author": "Seneca"
+		},
+		{
+			"id": 3,
+			"date": "20231011",
+			"quote": "Waste no more time arguing what a good man should be. Be one.",
+			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 4,
+			"date": "20231012",
+			"quote": "He who is brave is free.",
+			"author": "Seneca"
+		},
+		{
+			"id": 5,
+			"date": "20231013",
+			"quote": "The best revenge is to be unlike him who performed the injustice.",
+			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 6,
+			"date": "20231014",
+			"quote": "True happiness is to enjoy the present, without anxious dependence upon the future.",
+			"author": "Seneca"
+		},
+		{
+			"id": 7,
+			"date": "20231015",
+			"quote": "Accept the things to which fate binds you, and love the people with whom fate brings you together, but do so with all your heart.",
+			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 8,
+			"date": "20231016",
+			"quote": "Luck is what happens when preparation meets opportunity.",
+			"author": "Seneca"
+		},
+		{
+			"id": 9,
+			"date": "20231017",
+			"quote": "The universe is change; our life is what our thoughts make it.",
+			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 10,
+			"date": "20231018",
+			"quote": "If a man knows not to which port he sails, no wind is favorable.",
+			"author": "Seneca"
+		},
+		{
+			"id": 11,
+			"date": "20231019",
+			"quote": "When you arise in the morning, think of what a precious privilege it is to be alive—to breathe, to think, to enjoy, to love.",
+			"author": "Marcus Aurelius"
+		}
+	]
+}
