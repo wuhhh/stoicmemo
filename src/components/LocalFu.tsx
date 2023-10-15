@@ -3,6 +3,9 @@
 import { useEffect } from "react";
 import persistentStore from "../stores/persistent";
 
+/**
+ * Set local state based on the user's system preferences.
+ */
 export default function LocalFu() {
 	useEffect(() => {
 		const html = document.documentElement;
