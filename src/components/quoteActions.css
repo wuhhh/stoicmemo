@@ -2,12 +2,29 @@
 	@apply flex items-center;
 }
 
-.quoteActions__button {
+.quoteActions__favourite {
 	@apply flex items-center;
 }
 
-.quoteActions__button span {
+.quoteActions__favourite span {
 	@apply ml-[9px];
+}
+
+.quoteActions__favourite span::after {
+	content: "";
+	@apply block w-full h-px bg-almost-black origin-center scale-x-0 transition-transform duration-500;
+}
+
+.quoteActions__favourite:hover span::after {
+	@apply scale-x-100;
+}
+
+.-dark .quoteActions__favourite span::after {
+	@apply bg-pearl/50;
+}
+
+.quoteActions__share {
+	@apply relative w-[38px] h-[38px] flex items-center justify-center hover:text-hot-pink;
 }
 
 .quoteActions .label {
@@ -15,7 +32,7 @@
 }
 
 .quoteActions button svg {
-	@apply transition-colors duration-1000;
+	@apply transition duration-500;
 }
 
 .quoteActions__divide {
@@ -26,8 +43,12 @@
 	@apply text-pearl;
 }
 
-.-dark .quoteActions button svg {
+.-dark .quoteActions button {
 	@apply text-pearl;
+}
+
+.-dark .quoteActions__share:hover {
+	@apply text-hot-pink;
 }
 
 .-dark .quoteActions__divide {

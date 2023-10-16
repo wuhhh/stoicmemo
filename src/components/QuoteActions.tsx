@@ -42,13 +42,13 @@ export default function QuoteActions(props: {
 			{/* == Favourite == */}
 			<button
 				onClick={handleFavouriteClick}
-				className="quoteActions__button py-2.5"
+				className="quoteActions__favourite py-2.5"
 			>
 				<FavouriteIcon
 					className="w-[16px]"
 					isFavourite={favouritesIds.includes(props.quote.id)}
 				/>
-				<span className="label">Favourite</span>
+				<span className="label relative">Favourite</span>
 			</button>
 			{/* == Divide == */}
 			<div className="quoteActions__divide"></div>
@@ -56,7 +56,7 @@ export default function QuoteActions(props: {
 			{/* == X == */}
 			<button
 				onClick={handleShareX}
-				className="p-2.5"
+				className="quoteActions__share"
 				aria-label="Share on X/Twitter"
 			>
 				<XIcon className="w-[14px]" />
@@ -64,7 +64,7 @@ export default function QuoteActions(props: {
 			{/* == Facebook == */}
 			<button
 				onClick={handleShareFacebook}
-				className="p-2.5"
+				className="quoteActions__share"
 				aria-label="Share on Facebook"
 			>
 				<FacebookIcon className="w-[7px]" />
