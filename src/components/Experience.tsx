@@ -24,7 +24,10 @@ export default function Experience() {
 			<Suspense fallback={null}>
 				<Canvas id="experience" shadows dpr={1.5}>
 					<Scene />
-					<Float floatingRange={[-0.025, 0.025]} rotationIntensity={0.25}>
+					<Float
+						floatingRange={[-0.02 / 4, 0.125 / 4]}
+						rotationIntensity={0.25}
+					>
 						<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
 					</Float>
 					{/* <Leva hidden /> */}
@@ -96,8 +99,8 @@ const Scene = () => {
 	 * Rotate groups on mousemove with damping
 	 */
 	const modelGroup = useRef<Group>(null);
-	const xDiv = 8;
-	const yDiv = 16;
+	const xDiv = 1;
+	const yDiv = 8;
 	const xSpeed = 4.0;
 	const ySpeed = 4.0;
 
