@@ -7,7 +7,6 @@ import {
 	Environment,
 	Float,
 	Lightformer,
-	OrbitControls,
 	PerspectiveCamera,
 	RandomizedLight,
 } from "@react-three/drei";
@@ -24,10 +23,9 @@ export default function Experience() {
 			<Suspense fallback={null}>
 				<Canvas id="experience" shadows dpr={1.5}>
 					<Scene />
-					<Float floatingRange={[0.15, 0.2]}>
+					<Float floatingRange={[-0.025, 0.025]} rotationIntensity={0.5}>
 						<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
 					</Float>
-					<OrbitControls />
 					<Leva hidden />
 				</Canvas>
 			</Suspense>
@@ -36,6 +34,7 @@ export default function Experience() {
 }
 
 const Scene = () => {
+	const group = useRef<Group>(null);
 	const ambientLight = useRef<THREE.AmbientLight>(null);
 	const darkMode = useRef(persistentStore.getState().darkMode);
 
@@ -83,7 +82,7 @@ const Scene = () => {
 
 	return (
 		<>
-			<group position={[0, -0.375, 0]}>
+			<group ref={group} position={[0, -0.375, 0]}>
 				<Aurelius castShadow />
 				<AccumulativeShadows frames={40} {...shadowProps}>
 					<RandomizedLight {...randomizedLightProps} mapSize={256} />
