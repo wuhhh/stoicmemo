@@ -1,5 +1,6 @@
 "use client";
 
+import * as THREE from "three";
 import { Suspense, useEffect, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
@@ -26,7 +27,7 @@ export default function Experience() {
 					<Float floatingRange={[-0.025, 0.025]} rotationIntensity={0.25}>
 						<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
 					</Float>
-					<Leva hidden />
+					{/* <Leva hidden /> */}
 				</Canvas>
 			</Suspense>
 		</>
@@ -34,7 +35,6 @@ export default function Experience() {
 }
 
 const Scene = () => {
-	const group = useRef<Group>(null);
 	const ambientLight = useRef<THREE.AmbientLight>(null);
 	const darkMode = useRef(persistentStore.getState().darkMode);
 
@@ -80,17 +80,53 @@ const Scene = () => {
 		bias: 0.001,
 	});
 
+	/**
+	 * Get window mouse position
+	 */
+	const mouse = useRef(new THREE.Vector2(0, 0));
+	useEffect(() => {
+		const handleMouseMove = (e: MouseEvent) => {
+			mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+			mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+		};
+		window.addEventListener("mousemove", handleMouseMove);
+	}, []);
+
+	/**
+	 * Rotate groups on mousemove with damping
+	 */
+	const modelGroup = useRef<Group>(null);
+	const xDiv = 8;
+	const yDiv = 16;
+	const xSpeed = 4.0;
+	const ySpeed = 4.0;
+
+	useFrame((_, delta) => {
+		if (modelGroup.current) {
+			modelGroup.current.rotation.y +=
+				((mouse.current.x * Math.PI) / xDiv) * delta -
+				modelGroup.current.rotation.y * (delta * xSpeed);
+
+			modelGroup.current.rotation.x +=
+				((mouse.current.y * -1 * Math.PI) / yDiv) * delta -
+				modelGroup.current.rotation.x * (delta * ySpeed);
+		}
+	});
+
 	return (
 		<>
-			<group ref={group} position={[0, -0.375, 0]}>
-				<Aurelius castShadow />
-				<AccumulativeShadows frames={40} {...shadowProps}>
-					<RandomizedLight {...randomizedLightProps} mapSize={256} />
-				</AccumulativeShadows>
+			<group ref={modelGroup}>
+				<group position={[0, -0.375, 0]}>
+					<Aurelius castShadow />
+					<AccumulativeShadows frames={40} {...shadowProps}>
+						<RandomizedLight {...randomizedLightProps} mapSize={256} />
+					</AccumulativeShadows>
+				</group>
 			</group>
-			{/* <Environment frames={Infinity} resolution={128} blur={1}>
+
+			<Environment frames={Infinity} resolution={128} blur={1}>
 				<Lightformers />
-			</Environment> */}
+			</Environment>
 			<ambientLight ref={ambientLight} intensity={0.0} />
 		</>
 	);
@@ -102,37 +138,61 @@ const Lightformers = () => {
 	const lightFormerProps = useControls("lightFormer", {
 		intensity: 6,
 		form: "ring",
-		scale: 0.5,
-		target: [0, 0.375, 0],
-	});
-
-	useFrame(({ clock }) => {
-		if (lightGroup.current) {
-			lightGroup.current.rotation.y = clock.getElapsedTime();
-		}
+		scale: 1.0,
+		target: [-1.0, 0, 0],
+		color1: "#5151c4",
+		color2: "#b16a87",
+		color3: "#be91be",
+		color4: "#865555",
+		yRotation: 0,
 	});
 
 	const dist = 0.675;
+	const darkMode = useRef(persistentStore.getState().darkMode);
+
+	useEffect(() => {
+		persistentStore.subscribe((state) => (darkMode.current = state.darkMode));
+	}, []);
+
+	useFrame((_, delta) => {
+		if (
+			darkMode.current &&
+			lightGroup.current &&
+			lightGroup.current.rotation.y < 1
+		) {
+			lightGroup.current.rotation.y += delta;
+		} else if (
+			!darkMode.current &&
+			lightGroup.current &&
+			lightGroup.current.rotation.y > -1
+		) {
+			lightGroup.current.rotation.y -= delta;
+		}
+	});
 
 	return (
-		<group ref={lightGroup} position={[0, -1, 0]}>
+		<group
+			ref={lightGroup}
+			position={[0, -1, 0]}
+			rotation={[0, lightFormerProps.yRotation, 0]}
+		>
 			<Lightformer
-				color="blue"
+				color={lightFormerProps.color1}
 				position={[-dist, dist, dist]}
 				{...lightFormerProps}
 			/>
 			<Lightformer
-				color="indigo"
+				color={lightFormerProps.color2}
 				position={[dist, dist, -dist]}
 				{...lightFormerProps}
 			/>
 			<Lightformer
-				color="purple"
+				color={lightFormerProps.color3}
 				position={[dist, dist, dist]}
 				{...lightFormerProps}
 			/>
 			<Lightformer
-				color="red"
+				color={lightFormerProps.color4}
 				position={[-dist, dist, -dist]}
 				{...lightFormerProps}
 			/>
