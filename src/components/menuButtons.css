@@ -1,0 +1,15 @@
+.page__menuButtons .menuButton.darkMode svg {
+	@apply absolute transition duration-500 delay-200 ease-quad;
+}
+
+.page__menuButtons .menuButton.darkMode svg.moonIcon {
+	@apply opacity-0 translate-y-full;
+}
+
+.-dark .page__menuButtons .menuButton.darkMode svg.sunIcon {
+	@apply opacity-0 -translate-y-full;
+}
+
+.-dark .page__menuButtons .menuButton.darkMode svg.moonIcon {
+	@apply opacity-100 translate-y-0;
+}

@@ -49,7 +49,7 @@ const Scene = () => {
 		if (
 			darkMode.current &&
 			ambientLight.current &&
-			ambientLight.current.intensity > 0.0
+			ambientLight.current.intensity > 0.75
 		) {
 			ambientLight.current.intensity -= delta;
 		} else if (

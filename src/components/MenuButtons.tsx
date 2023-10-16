@@ -1,5 +1,6 @@
 "use client";
 
+import "./menuButtons.css";
 import MenuButton from "./MenuButton";
 import InfoIcon from "./icons/InfoIcon";
 import HeartIcon from "./icons/HeartIcon";
@@ -34,14 +35,27 @@ export default function MenuButtons(props: { className?: string }) {
 
 	return (
 		<div className={`flex items-center gap-x-[7px] ${props.className}`}>
-			<MenuButton onClick={handleInfoClick} ariaLabel="Show Info">
+			<MenuButton
+				onClick={handleInfoClick}
+				ariaLabel="Show Info"
+				className={`menuButton`}
+			>
 				<InfoIcon className="w-[4px]" />
 			</MenuButton>
-			<MenuButton onClick={handleFavouritesClick} ariaLabel="Show Favourites">
+			<MenuButton
+				onClick={handleFavouritesClick}
+				ariaLabel="Show Favourites"
+				className={`menuButton`}
+			>
 				<HeartIcon className="w-[18px] translate-y-px" />
 			</MenuButton>
-			<MenuButton onClick={handleDarkModeClick} ariaLabel="Enable Dark Mode">
-				<SunIcon className="w-[22px]" />
+			<MenuButton
+				onClick={handleDarkModeClick}
+				ariaLabel="Enable Dark Mode"
+				className={`menuButton darkMode`}
+			>
+				<SunIcon className="w-[22px] sunIcon" />
+				<MoonIcon className="w-5 moonIcon" />
 			</MenuButton>
 		</div>
 	);

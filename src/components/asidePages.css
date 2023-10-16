@@ -26,6 +26,10 @@
 	@apply relative flex-shrink-0 ml-12 w-[44px] h-[44px] rounded-full border border-hot-pink flex items-center justify-center -rotate-[10deg] duration-1000 opacity-0 pointer-events-none;
 }
 
+.asidePages__closePage:hover {
+	@apply bg-blush-petal/20;
+}
+
 .asidePages.-active .asidePages__closePage {
 	@apply opacity-100 rotate-0 pointer-events-auto;
 }
