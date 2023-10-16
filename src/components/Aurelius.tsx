@@ -23,7 +23,7 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
 	) as GLTFResult;
 	const aureliusMat = materials["Scene_-_Root"];
 	// aureliusMat.metalness = 0.1;
-	// aureliusMat.roughness = 0.6;
+	aureliusMat.roughness = 0.6;
 	// aureliusMat.envMapIntensity = 2.0;
 
 	return (
