@@ -32,7 +32,7 @@
 }
 
 .quoteActions button svg {
-	@apply transition duration-500;
+	@apply transition duration-1000;
 }
 
 .quoteActions__divide {
