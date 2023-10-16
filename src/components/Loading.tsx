@@ -30,7 +30,9 @@ export default function Loading() {
 			className={`loading ${experienceLoaded ? "-loaded" : ""}`}
 		>
 			<div className="loading__wrapper">
+				<div className="loading__omega !bg-hot-pink !delay-[30ms] mix-blend-difference"></div>
 				<div className="loading__omega"></div>
+				<div className="loading__alpha !bg-hot-pink !delay-[130ms] mix-blend-difference"></div>
 				<div className="loading__alpha"></div>
 				<div className="loading__logos">
 					<Image
