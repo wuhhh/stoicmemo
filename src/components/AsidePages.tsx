@@ -154,6 +154,7 @@ export default function AsideOverlay(props: { children?: any }) {
 		<div
 			ref={ref}
 			className="asidePages absolute inset-y-0 right-0 w-1/2 overflow-hidden"
+			style={{ pointerEvents: asideComponent ? "auto" : "none" }}
 		>
 			<div
 				style={{
