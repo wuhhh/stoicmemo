@@ -23,7 +23,7 @@ export default function Experience() {
 			<Suspense fallback={null}>
 				<Canvas id="experience" shadows dpr={1.5}>
 					<Scene />
-					<Float floatingRange={[-0.025, 0.025]} rotationIntensity={0.5}>
+					<Float floatingRange={[-0.025, 0.025]} rotationIntensity={0.25}>
 						<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
 					</Float>
 					<Leva hidden />
@@ -48,7 +48,7 @@ const Scene = () => {
 		if (
 			darkMode.current &&
 			ambientLight.current &&
-			ambientLight.current.intensity > 0.75
+			ambientLight.current.intensity > 0.25
 		) {
 			ambientLight.current.intensity -= delta;
 		} else if (
