@@ -1,0 +1,16 @@
+.menuButton {
+	@apply relative w-[44px] h-[44px] flex items-center justify-center;
+}
+
+.menuButton::before {
+	content: "";
+	@apply absolute inset-0 bg-nebula-indigo rounded-full transition-transform ease-quad duration-200;
+}
+
+.menuButton:hover::before {
+	@apply scale-[1.15];
+}
+
+.menuButton svg {
+	@apply relative transition-transform ease-quad duration-200;
+}

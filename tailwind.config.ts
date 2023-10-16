@@ -30,6 +30,11 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+			transitionTimingFunction: {
+				'cubic': 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+				'quad': 'cubic-bezier(0.455, 0.030, 0.515, 0.955)',
+				'quint': 'cubic-bezier(0.230, 1.000, 0.320, 1.000)',
+			}
     },
   },
   plugins: [],
