@@ -2,8 +2,8 @@
 	@apply transition-opacity duration-1000 ease-in-out;
 }
 
-.loading.-transitionsComplete {
-	@apply opacity-0;
+.loading.-loaded {
+	@apply pointer-events-none;
 }
 
 .loading__wrapper {
@@ -11,25 +11,31 @@
 }
 
 .loading__omega {
-	@apply absolute inset-y-0 right-0 w-1/2 bg-slate-night;
+	@apply absolute inset-y-0 right-0 w-1/2 bg-slate-night origin-right transition-transform ease-in-out duration-1000;
 }
 
 .loading__alpha {
-	@apply absolute inset-y-0 left-0 w-1/2 bg-slate-night;
+	@apply absolute inset-y-0 left-0 w-1/2 bg-slate-night origin-left transition-transform ease-in-out duration-1000 delay-200;
+}
+
+.loading.-transitionsComplete .loading__omega {
+	@apply scale-x-0;
+}
+
+.loading.-transitionsComplete .loading__alpha {
+	@apply -scale-x-0;
 }
 
 .loading__logos {
-	@apply absolute top-1/2 left-full w-[114px] h-[90px] -translate-x-1/2 -translate-y-1/2;
+	@apply absolute top-1/2 left-1/2 w-[114px] h-[90px] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500 ease-in-out;
 }
 
 .loading__logoClipper {
-	@apply absolute inset-0 overflow-hidden -translate-x-full transition-transform ease-in-out duration-[3s];
-	/* animation: unclipClipper 2s ease-in-out forwards; */
+	@apply absolute inset-0 overflow-hidden -translate-x-full transition-transform ease-in-out duration-[1.5s];
 }
 
 .loading__logoClipper__logo {
-	@apply absolute min-w-[114px] translate-x-full transition-transform ease-in-out duration-[3s];
-	/* animation: unclipLogo 2s ease-in-out forwards; */
+	@apply absolute min-w-[114px] translate-x-full transition-transform ease-in-out duration-[1.5s];
 }
 
 .loading.-loaded .loading__logoClipper,
@@ -38,39 +44,6 @@
 	transform: translateX(0) !important;
 }
 
-/* .loading.-loaded .loading__logoClipper,
-.loading.-loaded .loading__logoClipper__logo {
-	transform: translateX(0) !important;
-} */
-
-@keyframes unclipClipper {
-	0% {
-		transform: translateX(-100%);
-	}
-	30% {
-		transform: translateX(-55%);
-	}
-	50% {
-		transform: translateX(-43%);
-	}
-	75%,
-	100% {
-		transform: translateX(-29%);
-	}
-}
-
-@keyframes unclipLogo {
-	0% {
-		transform: translateX(100%);
-	}
-	30% {
-		transform: translateX(55%);
-	}
-	50% {
-		transform: translateX(43%);
-	}
-	75%,
-	100% {
-		transform: translateX(29%);
-	}
+.loading.-transitionsComplete .loading__logos {
+	opacity: 0;
 }

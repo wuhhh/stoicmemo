@@ -17,7 +17,6 @@ export default function Loading() {
 			logoClipperLogo.current.style.transform = "translateX(29%)";
 
 			logoClipper.current.addEventListener("transitionend", () => {
-				console.log("transitionend");
 				if (loading.current) {
 					loading.current.classList.add("-transitionsComplete");
 				}
@@ -32,24 +31,23 @@ export default function Loading() {
 		>
 			<div className="loading__wrapper">
 				<div className="loading__omega"></div>
-				<div className="loading__alpha">
-					<div className="loading__logos">
+				<div className="loading__alpha"></div>
+				<div className="loading__logos">
+					<Image
+						src="/stoicmemo-outlined.svg"
+						width={114}
+						height={90}
+						alt="Stoic Memo Logo"
+					/>
+					<div ref={logoClipper} className="loading__logoClipper">
 						<Image
-							src="/stoicmemo-outlined.svg"
+							ref={logoClipperLogo}
+							className="loading__logoClipper__logo"
+							src="/stoicmemo.svg"
 							width={114}
 							height={90}
 							alt="Stoic Memo Logo"
 						/>
-						<div ref={logoClipper} className="loading__logoClipper">
-							<Image
-								ref={logoClipperLogo}
-								className="loading__logoClipper__logo"
-								src="/stoicmemo.svg"
-								width={114}
-								height={90}
-								alt="Stoic Memo Logo"
-							/>
-						</div>
 					</div>
 				</div>
 			</div>
