@@ -65,6 +65,24 @@
 			"date": "20231019",
 			"quote": "When you arise in the morning, think of what a precious privilege it is to be alive—to breathe, to think, to enjoy, to love.",
 			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 12,
+			"date": "20231020",
+			"quote": "The best way to take care of the future is to take care of the present moment.",
+			"author": "Thich Nhat Hanh"
+		},
+		{
+			"id": 13,
+			"date": "20231021",
+			"quote": "The happiness of your life depends upon the quality of your thoughts.",
+			"author": "Marcus Aurelius"
+		},
+		{
+			"id": 14,
+			"date": "20231022",
+			"quote": "The secret of happiness, you see, is not found in seeking more, but in developing the capacity to enjoy less.",
+			"author": "Socrates"
 		}
 	]
 }
