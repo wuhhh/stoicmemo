@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
 
 export function Model(props: JSX.IntrinsicElements["group"]) {
 	const { nodes, materials } = useGLTF(
-		"/gsxnet-aurelius-transformed.glb"
+		"/assets/gsxnet-aurelius-transformed.glb"
 	) as GLTFResult;
 	const aureliusMat = materials["Scene_-_Root"];
 	// aureliusMat.metalness = 0.1;

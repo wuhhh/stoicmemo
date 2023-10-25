@@ -36,7 +36,7 @@ export default function Loading() {
 				<div className="loading__alpha"></div>
 				<div className="loading__logos">
 					<Image
-						src="/stoicmemo-outlined.svg"
+						src="/assets/stoicmemo-outlined.svg"
 						width={114}
 						height={90}
 						alt="Stoic Memo Logo"
@@ -45,7 +45,7 @@ export default function Loading() {
 						<Image
 							ref={logoClipperLogo}
 							className="loading__logoClipper__logo"
-							src="/stoicmemo.svg"
+							src="/assets/stoicmemo.svg"
 							width={114}
 							height={90}
 							alt="Stoic Memo Logo"

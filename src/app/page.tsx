@@ -62,7 +62,7 @@ export default async function Home() {
 						<div className="flex flex-col h-full">
 							<div className="flex justify-between">
 								<Image
-									src="/stoicmemo.svg"
+									src="/assets/stoicmemo.svg"
 									width={114}
 									height={90}
 									alt="Stoic Memo Logo"
