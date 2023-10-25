@@ -10,7 +10,7 @@ import QuoteActions from "@/components/QuoteActions";
 import { Quote } from "@/types/index";
 
 export default async function Home() {
-	const { quote } = await fetchTodaysQuote();
+	const { quote } = await fetchRandomQuote();
 
 	const currentDate = new Date();
 	const todayPretty = currentDate.toLocaleDateString(undefined, {
@@ -58,7 +58,7 @@ export default async function Home() {
 			<div className="page">
 				<LocalFu />
 				<main className="page__copy">
-					<div className="p-16 h-full">
+					<div className="p-7 h-full lg:p-16">
 						<div className="flex flex-col h-full">
 							<div className="flex justify-between">
 								<Image
@@ -66,10 +66,14 @@ export default async function Home() {
 									width={114}
 									height={90}
 									alt="Stoic Memo Logo"
+									className="z-10 w-[80px] lg:w-[114px]"
 								/>
-								<div className="label todayPretty">{todayPretty}</div>
+								<div className="hidden label todayPretty lg:block">
+									{todayPretty}
+								</div>
+								<MenuButtons className="page__menuButtons lg:hidden" />
 							</div>
-							<div className="flex-grow flex flex-col justify-center -mt-[90px]">
+							<div className="flex-grow flex flex-col justify-center lg:-mt-[90px]">
 								<h1 className={`quote my-4 ${quoteLengthClass()}`}>
 									{quote.quote}
 								</h1>
@@ -82,7 +86,7 @@ export default async function Home() {
 				<aside className="page__experience">
 					<Experience />
 					<Aside />
-					<MenuButtons className="page__menuButtons" />
+					<MenuButtons className="page__menuButtons hidden lg:flex" />
 				</aside>
 			</div>
 			<Loading />

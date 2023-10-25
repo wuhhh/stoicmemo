@@ -1,5 +1,10 @@
 .asidePages__page {
-	@apply relative flex flex-col flex-grow transition-opacity duration-1000 opacity-0 pt-16 before:block before:z-10 before:absolute before:bottom-0 before:inset-x-0 before:h-16 before:bg-gradient-to-t before:from-deep-charcoal;
+	@apply relative flex flex-col flex-grow transition-opacity duration-1000 opacity-0 pt-20 lg:pt-16;
+}
+
+.asidePages__page::before {
+	content: "";
+	@apply block z-10 absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-deep-charcoal;
 }
 
 .asidePages__page.-in {
@@ -23,7 +28,7 @@
 }
 
 .asidePages__closePage {
-	@apply relative flex-shrink-0 ml-12 w-[44px] h-[44px] rounded-full border border-hot-pink flex items-center justify-center -rotate-[10deg] duration-1000 opacity-0 pointer-events-none;
+	@apply relative flex-shrink-0 w-[40px] h-[40px] rounded-full border border-hot-pink flex items-center justify-center -rotate-[10deg] duration-1000 opacity-0 pointer-events-none ml-auto mr-7 lg:ml-12 lg:mr-0 lg:w-[44px] lg:h-[44px];
 }
 
 .asidePages__closePage:hover {
@@ -39,5 +44,5 @@
 }
 
 .scrollable__inner {
-	@apply absolute inset-0 pl-12 pr-16 after:block after:h-16;
+	@apply absolute inset-0 after:block after:h-16 px-7 lg:pl-12 lg:pr-16;
 }

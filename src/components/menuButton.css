@@ -1,5 +1,5 @@
 .menuButton {
-	@apply relative w-[44px] h-[44px] flex items-center justify-center;
+	@apply relative flex items-center justify-center w-[40px] h-[40px] lg:w-[44px] lg:h-[44px];
 }
 
 .menuButton::before {

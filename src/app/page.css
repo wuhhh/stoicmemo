@@ -1,17 +1,17 @@
 .page {
-	@apply bg-warm-grey flex h-full transition-colors duration-1000;
+	@apply bg-warm-grey flex flex-col h-full transition-colors duration-1000 lg:flex-row;
 }
 
 .page__copy {
-	@apply w-1/2 bg-smoke transition-colors duration-1000;
+	@apply flex-grow bg-smoke transition-colors duration-1000 lg:flex-1;
 }
 
 .page__experience {
-	@apply relative w-1/2;
+	@apply min-h-[40vh] lg:min-h-0 lg:flex-1 lg:relative;
 }
 
 .page__menuButtons {
-	@apply absolute top-16 right-16 text-hot-pink;
+	@apply absolute text-hot-pink top-7 right-7 lg:top-16 lg:right-16;
 }
 
 .quote,

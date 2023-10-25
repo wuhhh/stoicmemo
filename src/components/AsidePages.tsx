@@ -37,7 +37,7 @@ const Info = (props: { className?: string; active: boolean }) => {
 
 	return (
 		<div ref={ref} className="asidePages__page">
-			<h1 className="quote text-2xl text-almost-white mb-12 pl-12 pr-16">
+			<h1 className="quote text-2xl text-almost-white mb-12 px-7 lg:pl-12 lg:pr-16">
 				Information
 			</h1>
 			<div className="scrollable">
@@ -97,11 +97,11 @@ const Favourites = (props: { className?: string | null; active: boolean }) => {
 
 	return (
 		<div ref={ref} className="asidePages__page">
-			<h1 className="quote text-2xl text-almost-white mb-12 pl-12 pr-16">
+			<h1 className="quote text-2xl text-almost-white mb-12 px-7 lg:pl-12 lg:pr-16">
 				Favourites
 			</h1>
 			{favourites.length === 0 && (
-				<p className="body pl-12 pr-16 text-warm-grey opacity-50">
+				<p className="body lg:pl-12 lg:pr-16 text-warm-grey opacity-50">
 					You don't have any favourites yet.
 				</p>
 			)}
@@ -153,7 +153,7 @@ export default function AsideOverlay(props: { children?: any }) {
 	return (
 		<div
 			ref={ref}
-			className="asidePages absolute inset-y-0 right-0 w-1/2 overflow-hidden"
+			className="asidePages absolute inset-y-0 right-0 overflow-hidden w-full lg:w-1/2 lg:min-w-[420px]"
 			style={{ pointerEvents: asideComponent ? "auto" : "none" }}
 		>
 			<div
@@ -166,7 +166,7 @@ export default function AsideOverlay(props: { children?: any }) {
 				className="h-screen bg-deep-charcoal origin-top-left transition ease-cubic duration-1000"
 			></div>
 			<div className="absolute inset-0">
-				<div className="pt-16 flex flex-col h-full">
+				<div className="pt-7 flex flex-col h-full lg:pt-16">
 					<button
 						onClick={() => setAsideComponent(null)}
 						className="asidePages__closePage"

@@ -30,7 +30,7 @@ export default function Experience() {
 					>
 						<PerspectiveCamera makeDefault position={[0, 0, 2.5]} fov={30} />
 					</Float>
-					{/* <Leva hidden /> */}
+					<Leva hidden />
 				</Canvas>
 			</Suspense>
 		</>
