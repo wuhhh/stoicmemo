@@ -42,4 +42,4 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
 	);
 }
 
-useGLTF.preload("/gsxnet-aurelius-transformed.glb");
+useGLTF.preload("/assets/gsxnet-aurelius-transformed.glb");
